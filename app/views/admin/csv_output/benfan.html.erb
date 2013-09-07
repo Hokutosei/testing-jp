@@ -1,0 +1,107 @@
+<div align="center" class="csv_form">
+  <p class="bg left" ><span class="title">本番環境移行用</span></p>
+  <!--h4>該当ページは本番データ移行用です。</h4-->
+  <div class="benfan_notice">作業の間違いないように、本番ページにはとりあえず「エクスポート」「インポート」ボタンを表示しません。</div>
+  <% form_for :csv_output, :url => {:controller => "/admin/csv_output", :action => "benfan"} do |f| %>
+    <table>
+      <tr>
+        <th width="130" align="left">項目選択:</th>
+        <td><%= select_tag "project_id", options_for_select(CsvOutput::PROJECT_SELECT, (params[:project_id] if params[:project_id].present?)), :class => 'inputW50' %></td>
+      </tr>
+      <tr>
+        <th width="130" align="left">サーバ選択:</th>
+        <td><%= "本番サーバ" %></td>
+      </tr>
+      <tr>
+        <th width="130" align="left">加盟校ID:</th>
+        <td><%= text_field_tag "school_id", (params[:school_id] if params[:school_id].present?), :class => 'inputW250' %></td>
+      </tr>
+      <tr>
+        <th width="130" align="left">優先度:</th>
+        <td><%= select_tag "sort", options_for_select(CsvOutput::SORT_SELECT, (params[:sort] if params[:sort].present?)), :class => 'inputW50' %></td>
+      </tr>
+      <!--<tr>-->
+      <!--<th width="130" align="left">標識ID:</th>-->
+      <!--<td><%= session[:admin_mark_guid] %></td>-->
+      <!--</tr>-->
+      <tr>
+        <td colspan="2">
+          <div class="csv_btn_box">
+  <%#= submit_tag " ", :onclick => "$('upflag').value='0';this.disabled = true;this.form.submit()", :class=>"csv_output" %>
+  <%#= submit_tag " ", :onclick => "$('upflag').value='1';this.disabled = true;this.form.submit()", :class=>"csv_input" %>
+          </div>
+        </td>
+      </tr>
+      <!--<tr>-->
+      <!--<th width="130" align="left">項目選択:</th>-->
+      <!--<td>SC統合</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<th width="130" align="left">サーバ選択:</th>-->
+      <!--<td><%= "本番サーバ" %></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<th width="130" align="left">標識ID:</th>-->
+      <!--<td><%= text_field_tag "admin_mark_guid", (params[:admin_mark_guid] if params[:admin_mark_guid].present?), :class => 'inputW250' %></td>-->
+      <!--</tr>-->
+      <!--<%= hidden_field_tag "upflag" %>-->
+      <%= hidden_field_tag "server_id", "benfan" %>
+      <!--<%= hidden_field_tag "import_server_id", "benfan" %>-->
+      <!--<tr>-->
+      <!--<td colspan="2">-->
+      <!--<div class="csv_btn_box">-->
+      <!--<%#= submit_tag " ", :onclick => "$('upflag').value='0';this.disabled = true;this.form.submit()", :class=>"csv_output" %>-->
+      <!--<%#= submit_tag " ", :onclick => "$('upflag').value='1';this.disabled = true;this.form.submit()", :class=>"csv_input" %>-->
+      <!--</div>-->
+      <!--</td>-->
+      <!--</tr>-->
+    </table>
+  <%# if false %>
+    <!--<div class="csv_btn_box">-->
+  <%#= submit_tag " ", :onclick => "$('upflag').value='0';this.disabled = true;this.form.submit()", :class=>"csv_output" %>
+  <%#= submit_tag " ", :onclick => "$('upflag').value='1';this.disabled = true;this.form.submit()", :class=>"csv_input" %>
+    <!--</div>-->
+  <%# end %>
+  <% end %>
+</div>
+
+<div align="center" class="csv_form" style="margin-top:50px">
+   <p class="bg left" ><span class="title">インポート一覧</span></p>
+  <table border="0" width="100%" class="tform" >
+    <tr>
+      <th>項目</th>
+      <th>サーバ</th>
+      <th>加盟校ID</th>
+      <th>インポート先</th>
+      <th>ステータス</th>
+      <th>インポート日時</th>
+      <th>優先度</th>
+      <th>操作</th>
+    </tr>
+    <% if @outputs.present? %>
+      <% @outputs.each do |output| %>
+        <tr>
+          <td><%= output.show_project_name %></td>
+          <td><%= output.show_server %></td>
+          <td><%= output.school_id %></td>
+          <td><%= "本番環境" %></td>
+          <td><%= output.show_status %></td>
+          <td><%= output.input_time.blank? ? nil : output.input_time.strftime("%y-%m-%d %H:%M:%S")  %></td>
+          <td><%= output.show_sort %></td>
+          <td>
+    <% if !output.input_flag? %>
+            <%= link_to_remote("インポート", {:url => {:controller => "/admin/csv_output", :action => "import",
+                  :id => output.id, :import_server_id => "benfan", :sort => output.sort},
+                :before => "input_loading(this)"}
+            ) %>
+    <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="7" id="center">該当するデータが見つかりません。</td>
+      </tr>
+    <% end %>
+  </table>
+</div>

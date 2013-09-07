@@ -1,0 +1,22 @@
+<div align="center" class="csv_form">
+  <p class="bg left" >
+    エクスポートファイル一覧
+    <span style="float:right; margin-top:6px ">
+      <% if params[:server_name] == "dev" %>
+      <%= button_to_function("インポート", "location.href='/admin'") %>
+      <% elsif params[:server_name] == "staging" %>
+      <%= button_to_function("インポート", "location.href='/admin/csv_output/test_env'") %>
+      <%  else %>
+      <%= button_to_function("インポート", "location.href='/admin/csv_output/#{params[:server_name]}'") %>
+      <% end %>
+    </span>
+  </p>
+
+  <ul style="padding-left: 5px;text-align: left;">
+    <% @files.each do |file| %>
+      <li style="list-style:none;margin:2px 0;">
+        <%=link_to file,{:action=>"download",:project_name=>params[:project_name],:server_name =>params[:server_name],:school_id=> params[:school_id],:file=> file} %>
+      </li>
+    <%  end %>
+  </ul>
+</div>

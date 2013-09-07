@@ -1,0 +1,86 @@
+<div align="center" class="csv_form">
+  <p class="bg left" >
+    <% if params[:action] == 'test_env' %>
+        <span class="title">検証環境データ移行用</span>
+    <% else %>
+        <span class="title">開発環境データ移行用</span>
+    <% end %>
+  </p>
+  <% form_for :csv_output, :url => {:controller => "/admin/csv_output", :action => "test_env"} do |f| %>
+      <table>
+        <tr>
+          <th width="130" align="left">項目選択:</th>
+          <td><%= select_tag "project_id", options_for_select(CsvOutput::PROJECT_SELECT, (params[:project_id] if params[:project_id].present?)), :class => 'inputW50' %></td>
+        </tr>
+        <tr>
+          <th width="130" align="left">サーバ選択:</th>
+          <td><%= select_tag "server_id", options_for_select(CsvOutput::SERVER_SELECT, (params[:server_id] if params[:server_id].present?)), :class => 'inputW100' %></td>
+        </tr>
+        <tr>
+          <th width="130" align="left">加盟校ID:</th>
+          <td><%= text_field_tag "school_id", (params[:school_id] if params[:school_id].present?), :class => 'inputW250' %></td>
+        </tr>
+        <tr>
+          <th width="130" align="left">優先度:</th>
+          <td><%= select_tag "sort", options_for_select(CsvOutput::SORT_SELECT, (params[:sort] if params[:sort].present?)), :class => 'inputW50' %></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="csv_btn_box">
+              <%= submit_tag " ", :onclick => "$('upflag').value='0';this.disabled = true;this.form.submit()", :class=>"csv_output"  %>
+              <%#= submit_tag " ", :onclick => "$('upflag').value='1';this.disabled = true;this.form.submit()", :class=>"csv_input" %>
+            </div>
+          </td>
+        </tr>
+      </table>
+  <% end %>
+</div>
+<div align="center" class="csv_form" style="margin-top:50px">
+  <p class="bg left" ><span class="title">インポート一覧</span></p>
+  <table border="1" width="100%" class="tform">
+    <tr>
+      <th>項目</th>
+      <th>サーバ</th>
+      <th>加盟校ID</th>
+      <th>インポート先</th>
+      <th>ステータス</th>
+      <th>インポート日時</th>
+      <th>優先度</th>
+      <th>操作</th>
+    </tr>
+    <% if @outputs.present? %>
+        <% if params[:action] == 'test_env' %>
+            <% env_text = "<span>統合検証環境</span>" %>
+            <% env_param = CsvInput::TOGO_SELECT[1][1] %>
+        <% else %>
+            <% env_text = "<span>統合開発環境</span>" %>
+            <% env_param = CsvInput::TOGO_SELECT[0][1] %>
+        <% end %>
+        <% @outputs.each do |output| %>
+            <tr>
+              <td><%= output.show_project_name %></td>
+              <td><%= output.show_server %></td>
+              <td><%= output.school_id %></td>
+              <td><%= env_text%>
+              </td>
+              <td><%= output.show_status %></td>
+              <td><%= output.input_time.blank? ? nil : output.input_time.strftime("%y-%m-%d %H:%M:%S")  %></td>
+              <td><%= output.show_sort %></td>
+              <td>
+                <% if !output.input_flag? %>
+                    <%= link_to_remote("インポート", {:url => {:controller => "/admin/csv_output", :action => "import", :id => output.id, :sort => output.sort},
+                                                 :with => "'import_server_id=#{env_param}'",
+                                                 :before => "input_loading(this)"}
+
+                        )%>
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+    <% else %>
+        <tr>
+          <td colspan="7" id="center">該当するデータが見つかりません。</td>
+        </tr>
+    <% end %>
+  </table>
+</div>

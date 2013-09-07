@@ -1,0 +1,20 @@
+<div align="center" class="csv_form">
+<p class="bg"><b>ログイン</b></p>
+<% form_tag do -%>
+  <table>
+    <tr>
+      <td><label for="login">Login</label></td>
+    </tr>
+    <tr>
+      <td><%= text_field_tag 'login' %></td>
+    </tr>
+    <tr>
+      <td><label for="password">Password</label></td>
+    </tr>
+    <tr>
+      <td><%= password_field_tag 'password' %></td>
+    </tr>
+  </table>
+<p><%= submit_tag 'Log in' %></p>
+<% end -%>
+</div>

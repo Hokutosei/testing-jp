@@ -1,0 +1,16 @@
+<div align="center" class="csv_form">
+<% form_for :csv_output, :url => { :action => "output" }  do |f| %>
+    <table>
+      <tr>
+        <th width="150">サーバ選択</th>
+        <td><%= select_tag "server_id", options_for_select(CsvOutput::SERVER_SELECT), :class => 'inputW250'  %></td>
+      </tr>
+      <tr>
+        <th width="150">加盟校ID</th>
+        <td><%= f.text_field :id, :class => 'inputW250'  %></td>
+        <td>  <%= submit_tag " CSVダウンロード", :onclick => "this.disabled = true;this.form.submit()"%></td>
+      </tr>
+    </table>
+
+<%  end %>
+</div>

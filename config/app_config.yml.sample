@@ -1,0 +1,18 @@
+#*************************
+#  アプリケーション値設定ファイル
+#-------------------------
+# 書式 : YAML
+# 使用方法 :
+#   APP_CONFIG[設定名] として呼び出す。
+#   (例) :sms -> :watermarks_dir_from_sms 参照
+#        APP_CONFIG[:sms][:watermarks_dir_from_sms]
+#
+# 注意 :
+#   RubyからAPP_CONFIGのキーでシンボルで参照出来るように、
+#   必ずキーの先頭に : (colon) をつけること。
+#   (例) OKなパターン :admin -> APP_CONFIG[:admin] で参照出来る
+#        NGなパターン admin -> APP_CONFIG['admin'] としないと参照できない。
+# 　全部シンボルで参照出来るよう、厳守のこと。　
+#
+#*************************
+:administrator_pwd: alphait123456
