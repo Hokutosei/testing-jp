@@ -108,6 +108,8 @@ class Admin::CsvOutputController < Admin::BaseController
     project_name = output.project_name
     sort = params[:sort]
     import_server_name = params[:import_server_id]
+    puts '==============='
+    puts 'will import now'	
     CsvInput.input(school_id, server_name, project_name, import_server_name, sort)
     output.input_flag = true
     output.save(false)

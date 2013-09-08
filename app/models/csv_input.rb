@@ -2,7 +2,7 @@ class CsvInput < ActiveRecord::Base
   acts_as_paranoid
   TOGO_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc-trunk"],
 #TOGO_DB_SELECT = [["local", "localhost", "root", "123456", "sc-trunk1"],
-    ["togo-dev", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_dev"],
+    ["togo-dev", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_devs"],
     ["togo-test", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_test"],
     ["global-g8", " 192.168.75.221", "root", "123456", "sc-trunk"]
   ]
@@ -44,6 +44,7 @@ class CsvInput < ActiveRecord::Base
   #【著作】by zq 20130711
   def self.input(id, server_name="local", project_name="schoolcity", import_server_name="local", sort="1")
     #define log
+    jp_log =  Logger.new(STDOUT)
     input_log = Logger.new("#{RAILS_ROOT}/log/input_#{import_server_name}_#{id}_#{Time.now.strftime("%Y%m%d")}.txt")
     input_log.formatter = Logger::Formatter.new
     input_log.datetime_format = "%Y-%m-%d %H:%M:%S"
@@ -65,9 +66,17 @@ class CsvInput < ActiveRecord::Base
 
     school_id, teacher_ids = input_admins(id, mysql, csv_file_path,input_log)
 
-    import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
+    jp_log.info '========================'
+    jp_log.info 'WIL IMPORT NOW'	
 
-    import_part_2(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
+
+    import_part_1(id, mysql, csv_file_path,input_log, school_id) #if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
+
+    import_part_2(id, mysql, csv_file_path,input_log, school_id) #if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
+    
+    puts '================'
+    puts 'import finish'
+
 
     #import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
 
@@ -77,9 +86,20 @@ class CsvInput < ActiveRecord::Base
     @output = CsvOutput.find(:first, :conditions =>
         ["school_id = ? and project_name = ? and server_name = ? and input_server_name = ? and sort = ?",
         id, project_name, server_name, import_server_name, sort])
-    @output.input_time = Time.now()
-    @output.save!
-         
+    begin
+	puts '============='
+	puts 'OK'
+	puts @output
+    	@output.input_time = Time.now()
+    	@output.save!
+    rescue
+	puts '==================='
+	puts id
+	puts project_name
+	puts server_name
+	puts import_server_name
+	puts sort
+    end     
   end
 
   # part1

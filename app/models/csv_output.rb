@@ -6,7 +6,9 @@ class CsvOutput < ActiveRecord::Base
   BENFAN_SERVER = [["本番サーバ", "benfan"]]
   PROJECT_SELECT = [["SC", "schoolcity"], ["LG", "livegate"], ["SZ", "shozemi"]]
   SC_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc_benfan"],
-    ["dev", "49.212.96.162", "root", "123456", "sc_test"],
+    ["dev", "49.212.88.128", "school", "L7hi3eRw", "sc_dev"],
+#    ["dev", "49.212.96.162", "root", "123456", "sc_test"],
+    ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
     ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
     ["benfan", "49.212.79.216", "school", "FtGsjY3O", "SC_production"]
   ]

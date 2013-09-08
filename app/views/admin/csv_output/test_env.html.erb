@@ -65,10 +65,10 @@
               </td>
               <td><%= output.show_status %></td>
               <td><%= output.input_time.blank? ? nil : output.input_time.strftime("%y-%m-%d %H:%M:%S")  %></td>
-              <td><%= output.show_sort %></td>
+              <td><%#= output.show_sort %> <%= output.sort if output.sort.present? %> </td>
               <td>
                 <% if !output.input_flag? %>
-                    <%= link_to_remote("インポート", {:url => {:controller => "/admin/csv_output", :action => "import", :id => output.id, :sort => output.sort},
+                    <%= link_to_remote("インポート", {:url => {:controller => "/admin/csv_output", :action => "import", :id => output.id, :sort => output.sort },
                                                  :with => "'import_server_id=#{env_param}'",
                                                  :before => "input_loading(this)"}
 
