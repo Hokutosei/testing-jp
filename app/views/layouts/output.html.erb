@@ -11,7 +11,12 @@
        td.update("<img src='/images/loding.gif' align='absmiddle'/>");
     }
   </script>
-  <style type="text/css">
+  <script src='/javascripts/async.js'></script>
+  <script src='/javascripts/jp_async.js'></script>
+  <!--<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js" type="text/javascript"></script> -->
+  <style
+ type="text/css">
 #navcontainer ul
 {
   padding-left: 0;
@@ -157,6 +162,9 @@ p.notice {
   </style>
 </head>
 <body>
+this is the page
+
+
 <% if params[:action] != "login" %>
 <div>
   <div style="float: right;"><%= link_to "ログアウト", :controller => "/admin/admin", :action => "logout" %></div>
@@ -177,7 +185,13 @@ p.notice {
 <% flash[:notice] = nil %>
 <div >
   <%= yield %>
+</div> 
+<div style="float:right;position:relative; top:-810px;left:-100px">
+	Kameiko Task List
 </div>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js" type="text/javascript"></script> -->
+
 </body>
 </html>
 

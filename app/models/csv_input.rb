@@ -61,6 +61,10 @@ class CsvInput < ActiveRecord::Base
     csv_file_path = RAILS_ROOT + "/public/#{project_name}/#{server_name}/#{id}"
 
     #write log
+
+    input_log.info "============================== mysql info " '========================='
+    input_log.info mysql	 	
+
     input_log.info "================input start ================="
     input_log.info "===========school_id: #{id},server_name:#{server_name}============"
 
@@ -70,9 +74,9 @@ class CsvInput < ActiveRecord::Base
     jp_log.info 'WIL IMPORT NOW'	
 
 
-    import_part_1(id, mysql, csv_file_path,input_log, school_id) #if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
+    import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
 
-    import_part_2(id, mysql, csv_file_path,input_log, school_id) #if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
+    import_part_2(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
     
     puts '================'
     puts 'import finish'
@@ -3162,9 +3166,13 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
     sql << "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     st = mysql.prepare(sql)
     row_index = 0
+    input_log.info '=============================== mysql messages ============'
+    input_log.info mysq.inspect
     FasterCSV.foreach(old_file) do |row|
       row_index +=1
       next if row_index == 1
+      input_log.info '======================= debug paul'
+      input_log.info row
       input_log.info "===========#{row_index}============"
       #判断是否已经导入
       message_id = []
@@ -3175,6 +3183,7 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
       admin_id = []
       mysql.query("SELECT id FROM admins where sc_old_id =(#{row[2].to_s}) ORDER BY id DESC LIMIT 1").each {|a| admin_id << a} if row[2].to_s.present?
       admin_id = admin_id.to_s
+      input_log.info "=========== ADMIN_ID=========== #{admin_id}"
       #查找到user_id
       user_id = []
       mysql.query("SELECT id FROM users where sc_old_id =(#{row[1].to_s}) ORDER BY id DESC LIMIT 1").each {|u| user_id << u} if row[1].to_s.present?

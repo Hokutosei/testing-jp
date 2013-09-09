@@ -71,8 +71,9 @@
                     <%= link_to_remote("インポート", {:url => {:controller => "/admin/csv_output", :action => "import", :id => output.id, :sort => output.sort },
                                                  :with => "'import_server_id=#{env_param}'",
                                                  :before => "input_loading(this)"}
-
                         )%>
+
+		   <!-- <a href='javascript:importData(<%#= output.id %>)'>インポート</a> -->	
                 <% end %>
               </td>
             </tr>
@@ -84,3 +85,22 @@
     <% end %>
   </table>
 </div>
+<script type='text/javascript'>
+
+	function importData(id) {
+		$.ajax({
+                        type: 'POST',
+                        //url: 'http://202.210.151.55:3000',
+			url: 'http://127.0.0.1:3000'
+			data: {'data': id},
+                        success: function(data) {
+				alert('done!')
+                        }
+		})
+	}
+
+	jQuery(document).ready(function($) {
+	//	alert('test')
+	})
+</script>
+
