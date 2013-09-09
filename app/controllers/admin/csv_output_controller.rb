@@ -202,4 +202,55 @@ class Admin::CsvOutputController < Admin::BaseController
     end
   end
 
+  def doc_togo_dev_a
+    @outputs = CsvOutput.find(:all, :conditions => ["input_server_name = ?", "doc_togo_dev_a"])
+    return unless request.post?
+    school_id = params[:school_id]
+    server_name = params[:server_id]
+    project_name = params[:project_id]
+    sort = params[:sort]
+    upflag = params[:upflag].to_s == "1"
+    return flash[:notice] = "加盟校IDを入力してください。" if school_id.blank?
+    if upflag
+      import_server_name = params[:import_server_id]
+      #admin_mark = params[:admin_mark_guid]
+      #return flash[:notice] = "標識IDが不正です。" if admin_mark != session[:admin_mark_guid]
+      CsvInput.input(school_id, server_name, project_name, import_server_name)
+      flash[:notice] = "データを更新しました。"
+    else
+      #admin_mark = session[:admin_mark_guid]
+      return_error = CsvOutput.output(school_id, server_name, project_name)
+      return flash[:notice] = "加盟校IDが不正です。" if return_error == "error001"
+      output = CsvOutput.find(:first, :conditions => ["project_name = ? and server_name = ? and school_id = ? and output_flag = ? and input_server_name = ? and sort = ?", project_name, server_name, school_id, true, "doc_togo_dev_a", sort])
+      CsvOutput.create(:project_name => project_name, :server_name => server_name, :school_id => school_id, :output_flag => true, :input_server_name => "doc_togo_dev_a", :sort => sort) if output.blank?
+      @outputs = CsvOutput.find(:all, :conditions => ["project_name = ? and server_name = ?", project_name, server_name])
+      redirect_to :action => 'list', :school_id => params[:school_id], :server_name => params[:server_id], :project_name => params[:project_id], :sort => sort
+    end
+  end
+
+  def doc_togo_dev_b
+    @outputs = CsvOutput.find(:all, :conditions => ["input_server_name = ?", "doc_togo_dev_b"])
+    return unless request.post?
+    school_id = params[:school_id]
+    server_name = params[:server_id]
+    project_name = params[:project_id]
+    sort = params[:sort]
+    upflag = params[:upflag].to_s == "1"
+    return flash[:notice] = "加盟校IDを入力してください。" if school_id.blank?
+    if upflag
+      import_server_name = params[:import_server_id]
+      #admin_mark = params[:admin_mark_guid]
+      #return flash[:notice] = "標識IDが不正です。" if admin_mark != session[:admin_mark_guid]
+      CsvInput.input(school_id, server_name, project_name, import_server_name)
+      flash[:notice] = "データを更新しました。"
+    else
+      #admin_mark = session[:admin_mark_guid]
+      return_error = CsvOutput.output(school_id, server_name, project_name)
+      return flash[:notice] = "加盟校IDが不正です。" if return_error == "error001"
+      output = CsvOutput.find(:first, :conditions => ["project_name = ? and server_name = ? and school_id = ? and output_flag = ? and input_server_name = ? and sort = ?", project_name, server_name, school_id, true, "doc_togo_dev_b", sort])
+      CsvOutput.create(:project_name => project_name, :server_name => server_name, :school_id => school_id, :output_flag => true, :input_server_name => "doc_togo_dev_b", :sort => sort) if output.blank?
+      @outputs = CsvOutput.find(:all, :conditions => ["project_name = ? and server_name = ?", project_name, server_name])
+      redirect_to :action => 'list', :school_id => params[:school_id], :server_name => params[:server_id], :project_name => params[:project_id], :sort => sort
+    end
+  end
 end

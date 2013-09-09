@@ -2,7 +2,7 @@ class CsvInput < ActiveRecord::Base
   acts_as_paranoid
   TOGO_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc-trunk"],
 #TOGO_DB_SELECT = [["local", "localhost", "root", "123456", "sc-trunk1"],
-    ["togo-dev", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_devs"],
+    ["togo-dev", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_dev"],
     ["togo-test", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_test"],
     ["global-g8", " 192.168.75.221", "root", "123456", "sc-trunk"]
   ]
@@ -3167,7 +3167,7 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
     st = mysql.prepare(sql)
     row_index = 0
     input_log.info '=============================== mysql messages ============'
-    input_log.info mysq.inspect
+    input_log.info mysql.inspect
     FasterCSV.foreach(old_file) do |row|
       row_index +=1
       next if row_index == 1

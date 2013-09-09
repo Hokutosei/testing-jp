@@ -62,11 +62,12 @@ class CsvOutput < ActiveRecord::Base
     server_name = self.server_name
     case server_name
     when "dev"
-      return "テスト"
+      return "テスト1"
     when "staging"
       return "ステージング"
     when "benfan"
       return "本番"
+
     else
       return "ローカル"
     end

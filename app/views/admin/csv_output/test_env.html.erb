@@ -73,7 +73,7 @@
                                                  :before => "input_loading(this)"}
                         )%>
 
-		   <!-- <a href='javascript:importData(<%#= output.id %>)'>インポート</a> -->	
+		   <!--<a href='javascript:importData(<%= output.id %>)'>インポート</a> -->
                 <% end %>
               </td>
             </tr>
@@ -90,8 +90,8 @@
 	function importData(id) {
 		$.ajax({
                         type: 'POST',
-                        //url: 'http://202.210.151.55:3000',
-			url: 'http://127.0.0.1:3000'
+                        url: 'http://202.210.151.55:3000',
+			//url: 'http://127.0.0.1:3000',
 			data: {'data': id},
                         success: function(data) {
 				alert('done!')
