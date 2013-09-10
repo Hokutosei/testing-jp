@@ -57,8 +57,6 @@ class CsvInput < ActiveRecord::Base
     #选择数据库
     db_server,user_name,user_pass,db_name = db_select(import_server_name)
     input_log.info "================db server info ================="
-    input_log.info "================= #{server_name}"
-    input_log.info "================= #{import_server_name}"
     input_log.info "===input_ip:#{db_server},===input_user_name:#{user_name},=====input_user_pass:#{user_pass},===input_db:#{db_name}, ====sort:#{sort} ================="
     #连接数据库
     mysql.connect(db_server,user_name,user_pass,db_name)
@@ -84,7 +82,10 @@ class CsvInput < ActiveRecord::Base
     import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
 
     import_part_2(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
-    
+
+    import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
+
+
     puts '================'
     puts 'import finish'
 

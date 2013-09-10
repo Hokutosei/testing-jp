@@ -2,7 +2,7 @@ class CsvOutput < ActiveRecord::Base
   #acts_as_paranoid
   #  establish_connection :test_development
   LOCAL_SERVER = [["", "local"]]
-  SERVER_SELECT = [["テストサーバ", "dev"], ["ステージングサーバ", "staging"]]
+  SERVER_SELECT = [["テストサーバ", "dev"], ["ステージングサーバ", "staging"], ['本番サーバー', 'production']]
   BENFAN_SERVER = [["本番サーバ", "benfan"]]
   PROJECT_SELECT = [["SC", "schoolcity"], ["LG", "livegate"], ["SZ", "shozemi"]]
   SC_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc_benfan"],
