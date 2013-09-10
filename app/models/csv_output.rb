@@ -543,7 +543,7 @@ class CsvOutput < ActiveRecord::Base
         "card_status","memo","deleted","email","crypted_password","salt","created_at","updated_at","remember_token",
         "remember_token_expires_at","tel_mobile","enquete","pay_way","convenient_name","convenient_pay_name","convenient_pay_name_py",
         "convenient_phone","first_name","last_name","first_name_py","last_name_py","other_question","uuid_random","nickname",
-        "guardian","guardian_pwd","advance_attend_time","parent_name_py","profile","receiver_flag","last_view_course_id"
+        "guardian","guardian_pwd","advance_attend_time","parent_name_py","profile","receiver_flag","last_view_course_id", "first_school_id"
       ]
       csv << line
       
