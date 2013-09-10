@@ -434,6 +434,7 @@ class CsvInput < ActiveRecord::Base
   def self.input_admins(id, mysql, csv_file_path,input_log)
     #find file
     old_file = csv_file_path + "/admins.csv"
+
     #prepare
     return unless File.exist?(old_file)
     sql = "INSERT INTO admins"
