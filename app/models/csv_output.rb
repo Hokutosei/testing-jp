@@ -7,21 +7,28 @@ class CsvOutput < ActiveRecord::Base
   PROJECT_SELECT = [["SC", "schoolcity"], ["LG", "livegate"], ["SZ", "shozemi"]]
   SC_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc_benfan"],
     ["dev", "49.212.88.128", "school", "L7hi3eRw", "sc_dev"],
-#    ["dev", "49.212.96.162", "root", "123456", "sc_test"],
     ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
-    ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
+    ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
     ["benfan", "49.212.79.216", "school", "FtGsjY3O", "SC_production"]
   ]
   LG_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "live_gate"],
     ["dev", "192.168.75.221", "root", "123456", "live_gate"],
     ["staging", "192.168.75.221", "root", "123456", "live_gate"],
+    ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
     ["benfan", "192.168.75.221", "root", "123456", "live_gate"]
   ]
   SZ_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sh_development"],
     ["dev", "192.168.75.221", "root", "123456", "sh_development"],
     ["staging", "192.168.75.221", "root", "123456", "sh_development"],
+    ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
     ["benfan", "192.168.75.221", "root", "123456", "sh_development"]
   ]
+
+  #49.212.79.216
+  #database: SC_production
+  #username: school
+  #password: FtGsjY3O
+
 
   SORT1 = ["admins.csv", "courses.csv", "users.csv", "subjects.csv", "contents.csv",
     "subject_contents.csv", "course_categories.csv", "libraries.csv", "free_pages.csv", "course_teachers.csv",
@@ -118,8 +125,10 @@ class CsvOutput < ActiveRecord::Base
         return SC_DB_SELECT[1][1], SC_DB_SELECT[1][2], SC_DB_SELECT[1][3], SC_DB_SELECT[1][4]
       when "staging"
         return SC_DB_SELECT[2][1], SC_DB_SELECT[2][2], SC_DB_SELECT[2][3], SC_DB_SELECT[2][4]
-      when "benfan"
+      when "production"
         return SC_DB_SELECT[3][1], SC_DB_SELECT[3][2], SC_DB_SELECT[3][3], SC_DB_SELECT[3][4]
+      when "benfan"
+        return SC_DB_SELECT[4][1], SC_DB_SELECT[4][2], SC_DB_SELECT[4][3], SC_DB_SELECT[4][4]
       else
         return SC_DB_SELECT[0][1], SC_DB_SELECT[0][2], SC_DB_SELECT[0][3], SC_DB_SELECT[0][4]
       end
