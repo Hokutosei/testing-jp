@@ -206,7 +206,7 @@ class Admin::CsvOutputController < Admin::BaseController
     @outputs = CsvOutput.find(:all, :conditions => ["input_server_name = ?", "doc_togo_dev_a"])
     return unless request.post?
     school_id = params[:school_id]
-    server_name = params[:server_id]
+    server_name = 'doc_togo_dev_a'
     project_name = params[:project_id]
     sort = params[:sort]
     upflag = params[:upflag].to_s == "1"
@@ -232,7 +232,7 @@ class Admin::CsvOutputController < Admin::BaseController
     @outputs = CsvOutput.find(:all, :conditions => ["input_server_name = ?", "doc_togo_dev_b"])
     return unless request.post?
     school_id = params[:school_id]
-    server_name = params[:server_id]
+    server_name = 'doc_togo_dev_b'
     project_name = params[:project_id]
     sort = params[:sort]
     upflag = params[:upflag].to_s == "1"
