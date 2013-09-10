@@ -55,9 +55,6 @@
         <% if params[:action] == 'doc_togo_dev_a' %>
             <% env_text = "<span>202.210.151.53環境</span>" %>
             <% env_param = CsvInput::TOGO_SELECT[2][1] %>
-        <% else %>
-            <% env_text = "<span>統合開発環境</span>" %>
-            <% env_param = CsvInput::TOGO_SELECT[0][1] %>
         <% end %>
         <% @outputs.each do |output| %>
             <tr>
