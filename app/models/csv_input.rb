@@ -7,7 +7,7 @@ class CsvInput < ActiveRecord::Base
     ['doc-togo-dev2.teamfw.net', '202.210.151.56', 'doc_togo_dev', 'E+*N7szpl2', 'SC_development'],
     ["global-g8", " 192.168.75.221", "root", "123456", "sc-trunk"]
   ]
-  TOGO_SELECT = [["開発環境", "dev"], ["検証環境", "staging"]]
+  TOGO_SELECT = [["開発環境", "dev"], ["検証環境", "staging"], ['doc-togo-dev_a', 'doc-togo-dev_a'], ['doc-togo-dev_b', 'doc-togo-dev_b']]
   #受讲期间终了日，默认值
   LECTURE_END_DAY = "2013-12-31 00:00:00"
 
