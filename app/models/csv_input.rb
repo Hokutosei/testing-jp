@@ -63,7 +63,8 @@ class CsvInput < ActiveRecord::Base
     #设置编码方式
     mysql.query("SET NAMES UTF8 ")
     #创建文件夹
-    csv_file_path = RAILS_ROOT + "/public/#{project_name}/#{server_name}/#{id}"
+    server_folder_path = %w{doc_togo_dev_a doc_togo_dev_b}.include?(server_name) ? 'production' : server_name
+    csv_file_path = RAILS_ROOT + "/public/#{project_name}/#{server_folder_path}/#{id}"
 
     #write log
 
