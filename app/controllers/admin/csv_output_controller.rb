@@ -220,7 +220,8 @@ class Admin::CsvOutputController < Admin::BaseController
       return_error = CsvOutput.output(school_id, server_name, project_name)
       return flash[:notice] = "加盟校IDが不正です。" if return_error == "error001"
       output = CsvOutput.find(:first, :conditions => ["project_name = ? and server_name = ? and school_id = ? and output_flag = ? and input_server_name = ? and sort = ?", project_name, server_name, school_id, true, "doc_togo_dev_a", sort])
-      CsvOutput.create(:project_name => project_name, :server_name => 'doc_togo_dev_a', :school_id => school_id, :output_flag => true, :input_server_name => "doc_togo_dev_a", :sort => sort) if output.blank?
+#      CsvOutput.create(:project_name => project_name, :server_name => 'doc_togo_dev_a', :school_id => school_id, :output_flag => true, :input_server_name => "doc_togo_dev_a", :sort => sort) if output.blank?
+      CsvOutput.create(:project_name => project_name, :server_name => 'doc_togo_dev_a', :school_id => school_id, :output_flag => true, :input_server_name => "doc_togo_dev_a") if output.blank?
       @outputs = CsvOutput.find(:all, :conditions => ["project_name = ? and server_name = ?", project_name, server_name])
       redirect_to :action => 'list', :school_id => params[:school_id], :server_name => params[:server_id], :project_name => params[:project_id], :sort => sort
     end
