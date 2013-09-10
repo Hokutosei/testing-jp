@@ -737,8 +737,8 @@ material_flag,file_share_flag,schedule_order_flag,message_after_flag,show_name_f
     # add first_school_id by jeanepaul
     sql = "INSERT INTO users"
     sql << "(sc_old_id, create_id, first_login, login, first_name, last_name, first_name_py, last_name_py, email, crypted_password, salt, remember_token,
-remember_token_expires_at, uuid_random, nickname, receiver_flag, deleted, created_at, updated_at, last_view_course_id)"
-    sql << " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+remember_token_expires_at, uuid_random, nickname, receiver_flag, deleted, created_at, updated_at, last_view_course_id, first_school_id)"
+    sql << " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, #{id})"
     st = mysql.prepare(sql)
 
     row_index = 0
