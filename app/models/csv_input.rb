@@ -111,7 +111,7 @@ class CsvInput < ActiveRecord::Base
 	puts server_name
 	puts import_server_name
 	puts sort
-    end     
+    end
   end
 
   # part1
