@@ -434,7 +434,8 @@ class CsvInput < ActiveRecord::Base
   def self.input_admins(id, mysql, csv_file_path,input_log)
     #find file
     old_file = csv_file_path + "/admins.csv"
-
+    input_log.info "================================= jp debug"
+    input_log.info old_file
     #prepare
     return unless File.exist?(old_file)
     sql = "INSERT INTO admins"
@@ -443,7 +444,7 @@ deleted, name, name2, login, email,crypted_password, salt, created_at, updated_a
 remember_token_expires_at, photo_path, create_by_id, photo, receiver_flag, out_content_flag, login_code, last_live_type, `mod`)"
     sql << " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     st = mysql.prepare(sql)
-
+    input_log.info sql
     row_index = 0
     #导入加盟校
     FasterCSV.foreach(old_file) do |row|
