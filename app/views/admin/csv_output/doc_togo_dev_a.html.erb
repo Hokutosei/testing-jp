@@ -51,6 +51,7 @@
       <th>操作</th>
     </tr>
     <% if @outputs.present? %>
+         <%= params[:action] %>12
         <% if params[:action] == 'doc_togo_dev_a' %>
             <% env_text = "<span>202.210.151.53環境</span>" %>
             <% env_param = CsvInput::TOGO_SELECT[2][1] %>
