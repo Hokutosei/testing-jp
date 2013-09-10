@@ -1,12 +1,12 @@
 class CsvInput < ActiveRecord::Base
   acts_as_paranoid
   TOGO_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc-trunk"],
-#TOGO_DB_SELECT = [["local", "localhost", "root", "123456", "sc-trunk1"],
     ["togo-dev", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_dev"],
     ["togo-test", "219.94.238.194", "togo_user", "tk9ay5OH", "togo_test"],
+    ['doc-togo-dev1.teamfw.net', '202.210.151.53', 'doc_togo_dev', 'E+*N7szpl2', 'SC_development'],
+    ['doc-togo-dev2.teamfw.net', '202.210.151.56', 'doc_togo_dev', 'E+*N7szpl2', 'SC_development'],
     ["global-g8", " 192.168.75.221", "root", "123456", "sc-trunk"]
   ]
-
   TOGO_SELECT = [["開発環境", "dev"], ["検証環境", "staging"]]
   #受讲期间终了日，默认值
   LECTURE_END_DAY = "2013-12-31 00:00:00"
@@ -25,14 +25,19 @@ class CsvInput < ActiveRecord::Base
   #【返値】
   #【注意】
   #【著作】by zq 20130711
+  #doc_togo_dev_a
   def self.db_select(server_name)
     case server_name
     when "dev"
       return TOGO_DB_SELECT[1][1],TOGO_DB_SELECT[1][2],TOGO_DB_SELECT[1][3],TOGO_DB_SELECT[1][4]
     when "staging"
       return TOGO_DB_SELECT[2][1],TOGO_DB_SELECT[2][2],TOGO_DB_SELECT[2][3],TOGO_DB_SELECT[2][4]
-    when "benfan"
+    when "doc_togo_dev_a"
       return TOGO_DB_SELECT[3][1],TOGO_DB_SELECT[3][2],TOGO_DB_SELECT[3][3],TOGO_DB_SELECT[3][4]
+    when "doc_togo_dev_b"
+      return TOGO_DB_SELECT[4][1],TOGO_DB_SELECT[4][2],TOGO_DB_SELECT[4][3],TOGO_DB_SELECT[4][4]
+    when "benfan"
+      return TOGO_DB_SELECT[5][1],TOGO_DB_SELECT[5][2],TOGO_DB_SELECT[5][3],TOGO_DB_SELECT[5][4]
     else
       return TOGO_DB_SELECT[0][1],TOGO_DB_SELECT[0][2],TOGO_DB_SELECT[0][3],TOGO_DB_SELECT[0][4]
     end
