@@ -213,7 +213,7 @@ class Admin::CsvOutputController < Admin::BaseController
       import_server_name = params[:import_server_id]
       #admin_mark = params[:admin_mark_guid]
       #return flash[:notice] = "標識IDが不正です。" if admin_mark != session[:admin_mark_guid]
-      CsvInput.input(school_id, 'doc_togo_dev_a', project_name, import_server_name)
+      CsvInput.input(school_id, 'production', project_name, import_server_name)
       flash[:notice] = "データを更新しました。"
     else
       #admin_mark = session[:admin_mark_guid]
@@ -239,7 +239,7 @@ class Admin::CsvOutputController < Admin::BaseController
       import_server_name = params[:import_server_id]
       #admin_mark = params[:admin_mark_guid]
       #return flash[:notice] = "標識IDが不正です。" if admin_mark != session[:admin_mark_guid]
-      CsvInput.input(school_id, 'doc_togo_dev_a', project_name, import_server_name)
+      CsvInput.input(school_id, 'production', project_name, import_server_name)
       flash[:notice] = "データを更新しました。"
     else
       #admin_mark = session[:admin_mark_guid]
