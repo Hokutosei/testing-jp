@@ -2685,7 +2685,7 @@ class CsvOutput < ActiveRecord::Base
       line = ["id",  "user_id","admin_id","title","content","deleted", "created_at","updated_at","rubbish","course_id","draft","sender","mess_groups","old_id","old_message_folder_id" ]
       csv << line
       messages.each do |message|
-        line = message + (counter += 1)
+        line = message.push((counter += 1).to_s)
         csv << line
         message_ids << message[0]
       end
