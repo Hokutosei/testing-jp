@@ -2683,11 +2683,11 @@ class CsvOutput < ActiveRecord::Base
     output = FasterCSV.generate do |csv|
       line = ["id",  "user_id","admin_id","title","content","deleted", "created_at","updated_at","rubbish","course_id","draft","sender","mess_groups","old_id","old_message_folder_id" ]
       csv << line
-      #messages.each do |message|
-      #  line = message
-      #  csv << line
-      #  message_ids << message[0]
-      #end
+      messages.each do |message|
+        line = message
+        csv << line
+        message_ids << message[0]
+      end
     end
     #转码
     #文件的路径
