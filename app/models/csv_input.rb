@@ -424,12 +424,12 @@ class CsvInput < ActiveRecord::Base
     input_log.info "===========ckeditor_assets input start============"
     input_ckeditor_assets(mysql, csv_file_path,input_log)
 
-    begin
-      input_log.info "============input_lms_scorms======================"
-      input_lms_scorms(mysql, csv_file_path, input_log)
-    rescue
-      input_log.info "============ERROR input_lms_scorms======================"
-    end
+    #begin
+    #  input_log.info "============input_lms_scorms======================"
+    #  input_lms_scorms(mysql, csv_file_path, input_log)
+    #rescue
+    #  input_log.info "============ERROR input_lms_scorms======================"
+    #end
 
 
     input_log.info "==========Priority  3 end============="
