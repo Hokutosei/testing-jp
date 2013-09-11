@@ -424,6 +424,14 @@ class CsvInput < ActiveRecord::Base
     input_log.info "===========ckeditor_assets input start============"
     input_ckeditor_assets(mysql, csv_file_path,input_log)
 
+    begin
+      input_log.info "============input_lms_scorms======================"
+      input_lms_scorms(mysql, csv_file_path, input_log)
+    rescue
+      input_log.info "============ERROR input_lms_scorms======================"
+    end
+
+
     input_log.info "==========Priority  3 end============="
   end
 	
@@ -4551,4 +4559,41 @@ sex, zip_code, address1, address2, email, answer_flag)"
     end
   end
 
+  def self.input_lms_scorms( mysql, csv_file_path,input_log)
+    #find file
+    old_file = csv_file_path + "/lms_scorms.csv"
+    #prepare
+    return unless File.exist?(old_file)
+    sql = 'INSERT INTO lms_scorms'
+    sql << '(content_id,zip_path,zip_file_name,unzip_file_path,unzip_file_path,mod,deleted,created_at,updated_at,subject_id)'
+    sql << 'VALUES(?,?,?,?,?,?,?,?,?,?)'
+    st = mysql.prepare(sql)
+    row_index = 0
+    FasterCSV.foreach(old_file) do |row|
+
+      #第一行不导入
+      row_index += 1
+
+      #如果这个user_sns已经导入了，就不要再导入了
+      next if row_index == 1
+      input_log.info "===========#{row_index}============"
+      #判断是否已经导入、如果已经导入则不再导入
+      content_id = []
+      mysql.query("SELECT id FROM user_sns where sc_old_id =(#{row[0].to_s}) ORDER BY id DESC LIMIT 1").each {|w| content_id << w}
+      #查找到相应的user_id对应的user的新id
+      st.execute(
+          row[0].to_s.present? ? row[0].to_s : nil,#sc_old_id
+          row[1].to_s.present? ? row[1].to_s : nil,#sc_old_id
+          row[2].to_s.present? ? row[2].to_s : nil,#deleted
+          row[3].to_s.present? ? row[3].to_s : nil,#created_at
+          row[4].to_s.present? ? row[4].to_s : nil,#updated_at
+          row[5].to_s.present? ? row[5].to_s : nil,#t_access_token
+          row[6].to_s.present? ? row[6].to_s : nil,#t_access_token_secret
+          row[7].to_s.present? ? row[7].to_s : nil,#f_access_token
+          row[8].to_s.present? ? row[8].to_s : nil,#sc_old_id
+          row[9].to_s.present? ? row[9].to_s : nil,#sc_old_id
+          row[10].to_s.present? ? row[10].to_s : nil#sc_old_id
+      )
+    end
+  end
 end
