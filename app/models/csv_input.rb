@@ -80,11 +80,11 @@ class CsvInput < ActiveRecord::Base
     jp_log.info 'WIL IMPORT NOW'	
 
 
-    import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
+    #import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
 
     import_part_2(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
 
-    import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
+    #import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
 
 
     puts '================'
@@ -248,79 +248,79 @@ class CsvInput < ActiveRecord::Base
   end
 
   def self.import_part_2(id, mysql, csv_file_path,input_log, school_id=nil)
-    input_log.info "==========Priority  2 start============="
-    #inquiries csv导入
-    input_log.info "===========inquiries input start============"
-    input_inquiries(mysql, csv_file_path,input_log, school_id)
-
-    #infos csv导入
-    input_log.info "===========infos input start============"
-    input_infos(mysql, csv_file_path,input_log)
-
-    #course_infos csv导入
-    input_log.info "===========course_infos input start============"
-    input_course_infos(mysql, csv_file_path,input_log)
-
-    #exam_result_totals csv导入
-    input_log.info "===========exam_result_totals input start============"
-    input_exam_result_totals(mysql, csv_file_path,input_log)
-
-    #exam_results csv导入
-    input_log.info "===========exam_results input start============"
-    input_exam_results(mysql, csv_file_path,input_log)
-
-    #exam_result_details csv导入
-    input_log.info "===========exam_result_details input start============"
-    input_exam_result_details(mysql, csv_file_path,input_log)
-
-    #course_email_temps csv导入
-    input_log.info "===========course_email_temps input start============"
-    input_course_email_temps(mysql, csv_file_path,input_log)
-
-    #email_templates csv导入
-    input_log.info "===========email_templates input start============"
-    input_email_templates(mysql, csv_file_path, school_id,input_log)
-
-
-    #message_folders csv导入
-    input_log.info "===========message_folders input start============"
-    input_message_folders(mysql, csv_file_path,input_log)
-
-    #messages csv导入
+    #input_log.info "==========Priority  2 start============="
+    ##inquiries csv导入
+    #input_log.info "===========inquiries input start============"
+    #input_inquiries(mysql, csv_file_path,input_log, school_id)
+    #
+    ##infos csv导入
+    #input_log.info "===========infos input start============"
+    #input_infos(mysql, csv_file_path,input_log)
+    #
+    ##course_infos csv导入
+    #input_log.info "===========course_infos input start============"
+    #input_course_infos(mysql, csv_file_path,input_log)
+    #
+    ##exam_result_totals csv导入
+    #input_log.info "===========exam_result_totals input start============"
+    #input_exam_result_totals(mysql, csv_file_path,input_log)
+    #
+    ##exam_results csv导入
+    #input_log.info "===========exam_results input start============"
+    #input_exam_results(mysql, csv_file_path,input_log)
+    #
+    ##exam_result_details csv导入
+    #input_log.info "===========exam_result_details input start============"
+    #input_exam_result_details(mysql, csv_file_path,input_log)
+    #
+    ##course_email_temps csv导入
+    #input_log.info "===========course_email_temps input start============"
+    #input_course_email_temps(mysql, csv_file_path,input_log)
+    #
+    ##email_templates csv导入
+    #input_log.info "===========email_templates input start============"
+    #input_email_templates(mysql, csv_file_path, school_id,input_log)
+    #
+    #
+    ##message_folders csv导入
+    #input_log.info "===========message_folders input start============"
+    #input_message_folders(mysql, csv_file_path,input_log)
+    #
+    ##messages csv导入
     input_log.info "===========messages input start============"
     input_messages(mysql, csv_file_path,input_log)
-
-    #attachments csv导入
-    input_log.info "===========attachments input start============"
-    input_attachments(mysql, csv_file_path,input_log)
-
-    #subject_study_logs csv导入
-    input_log.info "===========subject_study_logs input start============"
-    input_subject_study_logs(mysql, csv_file_path,input_log)
-
-    #enquete_results 导入
-    input_log.info "===========enquete_results input start============"
-    input_enquete_results(mysql, csv_file_path,input_log)
-
-    #enquete_result_details 导入
-    input_log.info "===========enquete_result_details input start============"
-    input_enquete_result_details(mysql, csv_file_path,input_log)
-
-    #file_shares csv导入
-    input_log.info "===========file_shares input start============"
-    input_file_shares(mysql, csv_file_path,input_log)
-
-    #file_share_replies csv导入
-    input_log.info "===========file_share_replies input start============"
-    input_file_share_replies(mysql, csv_file_path,input_log)
-
-    #user_login_logs csv导入
-    input_log.info "===========user_login_logs input start============"
-    input_user_login_logs(mysql, csv_file_path,input_log)
-
-    #receivers csv导入
-    input_log.info "===========receivers input start============"
-    input_receivers(mysql, csv_file_path,input_log)
+    #
+    ##attachments csv导入
+    #input_log.info "===========attachments input start============"
+    #input_attachments(mysql, csv_file_path,input_log)
+    #
+    ##subject_study_logs csv导入
+    #input_log.info "===========subject_study_logs input start============"
+    #input_subject_study_logs(mysql, csv_file_path,input_log)
+    #
+    ##enquete_results 导入
+    #input_log.info "===========enquete_results input start============"
+    #input_enquete_results(mysql, csv_file_path,input_log)
+    #
+    ##enquete_result_details 导入
+    #input_log.info "===========enquete_result_details input start============"
+    #input_enquete_result_details(mysql, csv_file_path,input_log)
+    #
+    ##file_shares csv导入
+    #input_log.info "===========file_shares input start============"
+    #input_file_shares(mysql, csv_file_path,input_log)
+    #
+    ##file_share_replies csv导入
+    #input_log.info "===========file_share_replies input start============"
+    #input_file_share_replies(mysql, csv_file_path,input_log)
+    #
+    ##user_login_logs csv导入
+    #input_log.info "===========user_login_logs input start============"
+    #input_user_login_logs(mysql, csv_file_path,input_log)
+    #
+    ##receivers csv导入
+    #input_log.info "===========receivers input start============"
+    #input_receivers(mysql, csv_file_path,input_log)
 
     input_log.info "==========Priority  2 end============="
   end
@@ -3188,8 +3188,12 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
     row_index = 0
     input_log.info '=============================== mysql messages ============'
     input_log.info mysql.inspect
+    count = 0
     FasterCSV.foreach(old_file) do |row|
       row_index +=1
+      p '------------------------------'
+      p count
+      count += 1
       next if row_index == 1
       input_log.info '======================= debug paul'
       input_log.info row

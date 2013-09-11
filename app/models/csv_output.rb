@@ -8,7 +8,8 @@ class CsvOutput < ActiveRecord::Base
   SC_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "sc_benfan"],
     ["dev", "49.212.88.128", "school", "L7hi3eRw", "sc_dev"],
     ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
-    ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
+#    ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
+    ['production', 'localhost', 'root','jinpol', 'school_city_development' ],
     ["benfan", "49.212.79.216", "school", "FtGsjY3O", "SC_production"]
   ]
   LG_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "live_gate"],
@@ -2670,9 +2671,11 @@ class CsvOutput < ActiveRecord::Base
     message_ids = []
     # sql 语句
     if admin_ids.present?
+      p "admin id #{admin_ids}"
       mysql.query("SELECT * FROM messages where admin_id in (#{admin_ids})  ").each{|row| messages << row }
     end
     if user_ids.present?
+      p "user id #{user_ids}"
       mysql.query("SELECT * FROM messages where  user_id in (#{user_ids}) ").each{|m| messages << m }
     end
     #if admin_ids.present?
@@ -2685,6 +2688,10 @@ class CsvOutput < ActiveRecord::Base
       line = ["id",  "user_id","admin_id","title","content","deleted", "created_at","updated_at","rubbish","course_id","draft","sender","mess_groups","old_id","old_message_folder_id" ]
       csv << line
       messages.each do |message|
+        p '----------------------'
+        p counter
+        counter += 1
+        p '----------------------'
         line = message.push((counter += 1).to_s)
         csv << line
         message_ids << message[0]
