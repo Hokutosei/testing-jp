@@ -2669,10 +2669,15 @@ class CsvOutput < ActiveRecord::Base
     messages = []
     message_ids = []
     # sql 语句
+    #if admin_ids.present?
+    #  mysql.query("SELECT * FROM messages where admin_id in (#{admin_ids})  ").each{|row| messages << row }
+    #end
+    #if user_ids.present?
+    #  mysql.query("SELECT * FROM messages where  user_id in (#{user_ids}) ").each{|m| messages << m }
+    #end
     if admin_ids.present?
       mysql.query("SELECT * FROM messages where admin_id in (#{admin_ids})  ").each{|row| messages << row }
-    end
-    if user_ids.present?
+    elsif user_ids.present?
       mysql.query("SELECT * FROM messages where  user_id in (#{user_ids}) ").each{|m| messages << m }
     end
     output = FasterCSV.generate do |csv|
