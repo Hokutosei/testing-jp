@@ -138,8 +138,6 @@ class CsvOutput < ActiveRecord::Base
         return LG_DB_SELECT[1][1], LG_DB_SELECT[1][2], LG_DB_SELECT[1][3], LG_DB_SELECT[1][4]
       when "staging"
         return LG_DB_SELECT[2][1], LG_DB_SELECT[2][2], LG_DB_SELECT[2][3], LG_DB_SELECT[2][4]
-      when "production"
-        return SC_DB_SELECT[3][1], SC_DB_SELECT[3][2], SC_DB_SELECT[3][3], SC_DB_SELECT[3][4]
       when "benfan"
         return LG_DB_SELECT[3][1], LG_DB_SELECT[3][2], LG_DB_SELECT[3][3], LG_DB_SELECT[3][4]
       else
@@ -151,8 +149,6 @@ class CsvOutput < ActiveRecord::Base
         return SZ_DB_SELECT[1][1], SZ_DB_SELECT[1][2], SZ_DB_SELECT[1][3], SZ_DB_SELECT[1][4]
       when "staging"
         return SZ_DB_SELECT[2][1], SZ_DB_SELECT[2][2], SZ_DB_SELECT[2][3], SZ_DB_SELECT[2][4]
-      when "production"
-        return SC_DB_SELECT[3][1], SC_DB_SELECT[3][2], SC_DB_SELECT[3][3], SC_DB_SELECT[3][4]
       when "benfan"
         return SZ_DB_SELECT[3][1], SZ_DB_SELECT[3][2], SZ_DB_SELECT[3][3], SZ_DB_SELECT[3][4]
       else
