@@ -556,7 +556,7 @@ remember_token_expires_at, photo_path, create_by_id, photo, receiver_flag, out_c
     end
     #找出这个加盟校下的所有讲师
     teacher_ids = []
-    mysql.query("SELECT id FROM admins where create_by_id = (#{new_id}) and type = TeacherAdmin").each{|r|  teacher_ids << r }
+    mysql.query("SELECT id FROM admins where create_by_id = (#{new_id}) and type = `TeacherAdmin`").each{|r|  teacher_ids << r }
     teacher_ids = teacher_ids.flatten.join(",")
     #返回加盟校的新id和这个加盟校的所有讲师的id
     return new_id, teacher_ids
