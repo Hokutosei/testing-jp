@@ -556,7 +556,7 @@ remember_token_expires_at, photo_path, create_by_id, photo, receiver_flag, out_c
     end
     #找出这个加盟校下的所有讲师
     teacher_ids = []
-    mysql.query("SELECT id FROM admins where create_by_id = (#{new_id}) and type = 'TeacherAdmin'").each{|r|  teacher_ids << r }
+    mysql.query("SELECT id FROM admins where create_by_id = (#{new_id}) and type = TeacherAdmin").each{|r|  teacher_ids << r }
     teacher_ids = teacher_ids.flatten.join(",")
     #返回加盟校的新id和这个加盟校的所有讲师的id
     return new_id, teacher_ids
@@ -4564,7 +4564,7 @@ sex, zip_code, address1, address2, email, answer_flag)"
     old_file = csv_file_path + "/lms_scorms.csv"
     #prepare
     return unless File.exist?(old_file)
-    sql = 'INSERT INTO lms_scorms'
+    sql = 'INSERT INTO lms_scorms '
     sql << '(content_id,zip_path,zip_file_name,unzip_file_path,unzip_file_path,mod,deleted,created_at,updated_at,subject_id)'
     sql << 'VALUES(?,?,?,?,?,?,?,?,?,?)'
     st = mysql.prepare(sql)
