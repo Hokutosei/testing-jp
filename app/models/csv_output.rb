@@ -2685,8 +2685,8 @@ class CsvOutput < ActiveRecord::Base
       csv << line
       messages.each do |message|
         line = message
-        csv << line
-#        message_ids << message[0]
+#        csv << line
+        message_ids << message[0]
       end
     end
     #转码
