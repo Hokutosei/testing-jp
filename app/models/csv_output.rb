@@ -9,7 +9,7 @@ class CsvOutput < ActiveRecord::Base
     ["dev", "49.212.88.128", "school", "L7hi3eRw", "sc_dev"],
     ["staging", "49.212.94.82", "school", "6EO4TYdp", "SC_production"],
     ['production', '49.212.79.216', 'school','FtGsjY3O', 'SC_production' ],
-#    ['production', 'localhost', 'root','jinpol', 'school_city_development' ],
+    #['production', 'localhost', 'root','jinpol', 'school_city_development' ],
     ["benfan", "49.212.79.216", "school", "FtGsjY3O", "SC_production"]
   ]
   LG_DB_SELECT = [["local", "192.168.75.221", "root", "123456", "live_gate"],
