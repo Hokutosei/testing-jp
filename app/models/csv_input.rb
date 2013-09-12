@@ -80,11 +80,11 @@ class CsvInput < ActiveRecord::Base
     jp_log.info 'WIL IMPORT NOW'	
 
 
-    #import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
+    import_part_1(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "1" || sort.to_s == "4" || sort.to_s == "5"
 
     import_part_2(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "2" || sort.to_s == "4" || sort.to_s == "5"
 
-    #import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
+    import_part_3(id, mysql, csv_file_path,input_log, school_id) if sort.to_s == "3" || sort.to_s == "5"
 
 
     puts '================'
@@ -248,79 +248,79 @@ class CsvInput < ActiveRecord::Base
   end
 
   def self.import_part_2(id, mysql, csv_file_path,input_log, school_id=nil)
-    #input_log.info "==========Priority  2 start============="
-    ##inquiries csv导入
-    #input_log.info "===========inquiries input start============"
-    #input_inquiries(mysql, csv_file_path,input_log, school_id)
-    #
-    ##infos csv导入
-    #input_log.info "===========infos input start============"
-    #input_infos(mysql, csv_file_path,input_log)
-    #
-    ##course_infos csv导入
-    #input_log.info "===========course_infos input start============"
-    #input_course_infos(mysql, csv_file_path,input_log)
-    #
-    ##exam_result_totals csv导入
-    #input_log.info "===========exam_result_totals input start============"
-    #input_exam_result_totals(mysql, csv_file_path,input_log)
-    #
-    ##exam_results csv导入
-    #input_log.info "===========exam_results input start============"
-    #input_exam_results(mysql, csv_file_path,input_log)
-    #
-    ##exam_result_details csv导入
-    #input_log.info "===========exam_result_details input start============"
-    #input_exam_result_details(mysql, csv_file_path,input_log)
-    #
-    ##course_email_temps csv导入
-    #input_log.info "===========course_email_temps input start============"
-    #input_course_email_temps(mysql, csv_file_path,input_log)
-    #
-    ##email_templates csv导入
-    #input_log.info "===========email_templates input start============"
-    #input_email_templates(mysql, csv_file_path, school_id,input_log)
-    #
-    #
-    ##message_folders csv导入
-    #input_log.info "===========message_folders input start============"
-    #input_message_folders(mysql, csv_file_path,input_log)
-    #
-    ##messages csv导入
+    input_log.info "==========Priority  2 start============="
+    #inquiries csv导入
+    input_log.info "===========inquiries input start============"
+    input_inquiries(mysql, csv_file_path,input_log, school_id)
+
+    #infos csv导入
+    input_log.info "===========infos input start============"
+    input_infos(mysql, csv_file_path,input_log)
+
+    #course_infos csv导入
+    input_log.info "===========course_infos input start============"
+    input_course_infos(mysql, csv_file_path,input_log)
+
+    #exam_result_totals csv导入
+    input_log.info "===========exam_result_totals input start============"
+    input_exam_result_totals(mysql, csv_file_path,input_log)
+
+    #exam_results csv导入
+    input_log.info "===========exam_results input start============"
+    input_exam_results(mysql, csv_file_path,input_log)
+
+    #exam_result_details csv导入
+    input_log.info "===========exam_result_details input start============"
+    input_exam_result_details(mysql, csv_file_path,input_log)
+
+    #course_email_temps csv导入
+    input_log.info "===========course_email_temps input start============"
+    input_course_email_temps(mysql, csv_file_path,input_log)
+
+    #email_templates csv导入
+    input_log.info "===========email_templates input start============"
+    input_email_templates(mysql, csv_file_path, school_id,input_log)
+
+
+    #message_folders csv导入
+    input_log.info "===========message_folders input start============"
+    input_message_folders(mysql, csv_file_path,input_log)
+
+    #messages csv导入
     input_log.info "===========messages input start============"
     input_messages(mysql, csv_file_path,input_log)
-    #
-    ##attachments csv导入
-    #input_log.info "===========attachments input start============"
-    #input_attachments(mysql, csv_file_path,input_log)
-    #
-    ##subject_study_logs csv导入
-    #input_log.info "===========subject_study_logs input start============"
-    #input_subject_study_logs(mysql, csv_file_path,input_log)
-    #
-    ##enquete_results 导入
-    #input_log.info "===========enquete_results input start============"
-    #input_enquete_results(mysql, csv_file_path,input_log)
-    #
-    ##enquete_result_details 导入
-    #input_log.info "===========enquete_result_details input start============"
-    #input_enquete_result_details(mysql, csv_file_path,input_log)
-    #
-    ##file_shares csv导入
-    #input_log.info "===========file_shares input start============"
-    #input_file_shares(mysql, csv_file_path,input_log)
-    #
-    ##file_share_replies csv导入
-    #input_log.info "===========file_share_replies input start============"
-    #input_file_share_replies(mysql, csv_file_path,input_log)
-    #
-    ##user_login_logs csv导入
-    #input_log.info "===========user_login_logs input start============"
-    #input_user_login_logs(mysql, csv_file_path,input_log)
-    #
-    ##receivers csv导入
-    #input_log.info "===========receivers input start============"
-    #input_receivers(mysql, csv_file_path,input_log)
+
+    #attachments csv导入
+    input_log.info "===========attachments input start============"
+    input_attachments(mysql, csv_file_path,input_log)
+
+    #subject_study_logs csv导入
+    input_log.info "===========subject_study_logs input start============"
+    input_subject_study_logs(mysql, csv_file_path,input_log)
+
+    #enquete_results 导入
+    input_log.info "===========enquete_results input start============"
+    input_enquete_results(mysql, csv_file_path,input_log)
+
+    #enquete_result_details 导入
+    input_log.info "===========enquete_result_details input start============"
+    input_enquete_result_details(mysql, csv_file_path,input_log)
+
+    #file_shares csv导入
+    input_log.info "===========file_shares input start============"
+    input_file_shares(mysql, csv_file_path,input_log)
+
+    #file_share_replies csv导入
+    input_log.info "===========file_share_replies input start============"
+    input_file_share_replies(mysql, csv_file_path,input_log)
+
+    #user_login_logs csv导入
+    input_log.info "===========user_login_logs input start============"
+    input_user_login_logs(mysql, csv_file_path,input_log)
+
+    #receivers csv导入
+    input_log.info "===========receivers input start============"
+    input_receivers(mysql, csv_file_path,input_log)
 
     input_log.info "==========Priority  2 end============="
   end
@@ -424,12 +424,12 @@ class CsvInput < ActiveRecord::Base
     input_log.info "===========ckeditor_assets input start============"
     input_ckeditor_assets(mysql, csv_file_path,input_log)
 
-    begin
-      input_log.info "============input_lms_scorms======================"
-      input_lms_scorms(mysql, csv_file_path, input_log)
-    rescue
-      input_log.info "============ERROR input_lms_scorms======================"
-    end
+    #begin
+    #  input_log.info "============input_lms_scorms======================"
+    #  input_lms_scorms(mysql, csv_file_path, input_log)
+    #rescue
+    #  input_log.info "============ERROR input_lms_scorms======================"
+    #end
 
 
     input_log.info "==========Priority  3 end============="
@@ -3191,9 +3191,6 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
     count = 0
     FasterCSV.foreach(old_file) do |row|
       row_index +=1
-      p '------------------------------'
-      p count
-      count += 1
       next if row_index == 1
       input_log.info '======================= debug paul'
       input_log.info row
@@ -3226,6 +3223,10 @@ pay_status, confirm_status, payment_at, convenient_confirm_code, memo, batch_cre
         end
       end
       #execute
+      p '------------------------------'
+      p count
+      count += 1
+
       st.execute(
         row[0].to_s.present? ? row[0].to_s : nil,#sc_old_id
         user_id.present? ? user_id : nil,#user_id
@@ -4563,41 +4564,41 @@ sex, zip_code, address1, address2, email, answer_flag)"
     end
   end
 
-  def self.input_lms_scorms( mysql, csv_file_path,input_log)
-    #find file
-    old_file = csv_file_path + "/lms_scorms.csv"
-    #prepare
-    return unless File.exist?(old_file)
-    sql = 'INSERT INTO lms_scorms '
-    sql << '(content_id,zip_path,zip_file_name,unzip_file_path,unzip_file_path,mod,deleted,created_at,updated_at,subject_id)'
-    sql << 'VALUES(?,?,?,?,?,?,?,?,?,?)'
-    st = mysql.prepare(sql)
-    row_index = 0
-    FasterCSV.foreach(old_file) do |row|
-
-      #第一行不导入
-      row_index += 1
-
-      #如果这个user_sns已经导入了，就不要再导入了
-      next if row_index == 1
-      input_log.info "===========#{row_index}============"
-      #判断是否已经导入、如果已经导入则不再导入
-      content_id = []
-      mysql.query("SELECT id FROM user_sns where sc_old_id =(#{row[0].to_s}) ORDER BY id DESC LIMIT 1").each {|w| content_id << w}
-      #查找到相应的user_id对应的user的新id
-      st.execute(
-          row[0].to_s.present? ? row[0].to_s : nil,#sc_old_id
-          row[1].to_s.present? ? row[1].to_s : nil,#sc_old_id
-          row[2].to_s.present? ? row[2].to_s : nil,#deleted
-          row[3].to_s.present? ? row[3].to_s : nil,#created_at
-          row[4].to_s.present? ? row[4].to_s : nil,#updated_at
-          row[5].to_s.present? ? row[5].to_s : nil,#t_access_token
-          row[6].to_s.present? ? row[6].to_s : nil,#t_access_token_secret
-          row[7].to_s.present? ? row[7].to_s : nil,#f_access_token
-          row[8].to_s.present? ? row[8].to_s : nil,#sc_old_id
-          row[9].to_s.present? ? row[9].to_s : nil,#sc_old_id
-          row[10].to_s.present? ? row[10].to_s : nil#sc_old_id
-      )
-    end
-  end
+  #def self.input_lms_scorms( mysql, csv_file_path,input_log)
+  #  #find file
+  #  old_file = csv_file_path + "/lms_scorms.csv"
+  #  #prepare
+  #  return unless File.exist?(old_file)
+  #  sql = 'INSERT INTO lms_scorms '
+  #  sql << '(content_id,zip_path,zip_file_name,unzip_file_path,unzip_file_path,mod,deleted,created_at,updated_at,subject_id)'
+  #  sql << 'VALUES(?,?,?,?,?,?,?,?,?,?)'
+  #  st = mysql.prepare(sql)
+  #  row_index = 0
+  #  FasterCSV.foreach(old_file) do |row|
+  #
+  #    #第一行不导入
+  #    row_index += 1
+  #
+  #    #如果这个user_sns已经导入了，就不要再导入了
+  #    next if row_index == 1
+  #    input_log.info "===========#{row_index}============"
+  #    #判断是否已经导入、如果已经导入则不再导入
+  #    content_id = []
+  #    mysql.query("SELECT id FROM user_sns where sc_old_id =(#{row[0].to_s}) ORDER BY id DESC LIMIT 1").each {|w| content_id << w}
+  #    #查找到相应的user_id对应的user的新id
+  #    st.execute(
+  #        row[0].to_s.present? ? row[0].to_s : nil,#sc_old_id
+  #        row[1].to_s.present? ? row[1].to_s : nil,#sc_old_id
+  #        row[2].to_s.present? ? row[2].to_s : nil,#deleted
+  #        row[3].to_s.present? ? row[3].to_s : nil,#created_at
+  #        row[4].to_s.present? ? row[4].to_s : nil,#updated_at
+  #        row[5].to_s.present? ? row[5].to_s : nil,#t_access_token
+  #        row[6].to_s.present? ? row[6].to_s : nil,#t_access_token_secret
+  #        row[7].to_s.present? ? row[7].to_s : nil,#f_access_token
+  #        row[8].to_s.present? ? row[8].to_s : nil,#sc_old_id
+  #        row[9].to_s.present? ? row[9].to_s : nil,#sc_old_id
+  #        row[10].to_s.present? ? row[10].to_s : nil#sc_old_id
+  #    )
+  #  end
+  #end
 end
